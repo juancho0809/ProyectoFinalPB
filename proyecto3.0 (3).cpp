@@ -74,6 +74,8 @@ void encontrarVacantes(void);
 // funciones para login
 void loginDemandantes(void);
 void loginEmpleadores(void);
+//validacion
+void validarCadena(char numero[50]);
 
 
 int main()
@@ -147,6 +149,7 @@ void registro(void)
 
 void registrarPerfilDemandante(void)
 {
+	int sw;
     ofstream fichUsuariosDemandantes; // Creacion de fichero para almacenar usuarios y contrasenas
     demandante datos;
     fichUsuariosDemandantes.open("usuariosDemandantes.dat", ios::app | ios ::binary); // Abrir fichero que se usara para almacenar los usuarios y contrasenas
@@ -163,23 +166,72 @@ void registrarPerfilDemandante(void)
         system("cls");
         cout << "\tBienvenido al registro para demandantes de empleo." << endl;
         cout << "\tA continuacion rellene los siguientes campos." << endl;
+        cout << "\tA SOLO minusculas." << endl;
         cout << "----------------------------------------------------------------" << endl;
         cout << "Escriba su nombre: ";
         cin.getline(datos.nombre, 20);
+        validarCadena(datos.nombre);
+        if (sw == 1){
+		cout << "Digite solo letras!!!"<<endl;
+		cout << "Escriba su nombre: ";
+		cin.getline(datos.nombre, 20);
+		}
         cout << "Escriba su primer apellido: ";
         cin.getline(datos.primerApellido, 20);
+        validarCadena(datos.primerApellido);
+        if (sw == 1){
+		cout << "Digite solo letras!!!"<<endl;
+		cout << "Escriba su primer apellido: ";
+		cin.getline(datos.primerApellido, 20);
+		}
         cout << "Escriba su segundo apellido: ";
         cin.getline(datos.segundoApellido, 20);
+        validarCadena(datos.segundoApellido);
+        if (sw == 1){
+		cout << "Digite solo letras!!!"<<endl;
+		cout << "Escriba su segundo apellido: ";
+		cin.getline(datos.segundoApellido, 20);
+		}
         cout << "Escriba su edad: ";
         cin >> datos.edad;
+        while(datos.edad < 17){
+        	if (datos.edad > 1 && datos.edad < 17){
+        		cout << "ES MENOR DE EDAD!!!"<<endl;
+        		_getch();
+        		cout << "Escriba una edad correspondiente";
+        		cin >> datos.edad;
+        	}
+        	if(datos.edad < 1){
+        		cout << "Número no valido"<<endl;
+        		cout << "Escriba una edad correspondiente";
+        		cin >> datos.edad;   		
+			}
+			if(datos.edad > 70){
+				cout << "Mijo usted ya debe estar pensionado"<<endl;
+				cout << "Escriba una edad correspondiente";
+        		cin >> datos.edad; 
+			}
+		}
         cin.ignore();
         cout << "Escriba su nivel de educación: ";
         cin.getline(datos.educacion, 20);
-        cout << "¿En cuál área de trabajo se desempeña? ";
+        cout << "¿En cuál área de trabajo se desempeña? (solo letras)";
         cin.getline(datos.areadetrabajo, 20);
+        validarCadena(datos.areadetrabajo);
+        if (sw == 1){
+		cout << "Digite solo letras!!!"<<endl;
+		cout << "¿En cuál área de trabajo se desempeña? ";
+		cin.getline(datos.areadetrabajo, 20);
+		}
         fflush(stdin);
         cout << "Describase en 20 palabras: ";
         cin.getline(datos.experiencia, 150);
+        validarCadena(datos.experiencia);
+        if (sw == 1){
+		cout << "Digite solo letras!!!"<<endl;
+		cout << "¿En cuál área de trabajo se desempeña? ";
+		cin.getline(datos.experiencia, 20);
+		}
         fichUsuariosDemandantes.write((char *)&datos, sizeof(demandante)); // Almacenamos el usuario y su contraseÃ±a
         fichUsuariosDemandantes.close();
     }
@@ -191,6 +243,7 @@ void registrarPerfilDemandante(void)
 
 void registrarPerfilEmpleador()
 {
+	int sw;
     ofstream fichUsuariosEmpleadores; // Creacion de fichero para almacenar usuarios y contrasenas (Empleadores)
     empleador datos;
     fichUsuariosEmpleadores.open("usuariosEmpleadores.dat", ios::app | ios ::binary); // Abrir fichero que se usara para almacenar los usuarios y contrasenas
@@ -210,6 +263,12 @@ void registrarPerfilEmpleador()
         cout << "----------------------------------------------------------------" << endl;
         cout << "Nombre de Nombre de la empresa: ";
         cin.getline(datos.nombreEmpresa, 20);
+        validarCadena(datos.nombreEmpresa);
+        if (sw == 1){
+		cout << "Digite solo letras!!!"<<endl;
+		cout << "¿En cuál área de trabajo se desempeña? ";
+		cin.getline(datos.nombreEmpresa, 20);
+		}
         cin.ignore();
         cout << "Escriba el sector: ";
         cin.getline(datos.sector, 20);
@@ -279,7 +338,7 @@ void loginDemandantes(void)
         cout << "Usuario: ";
         cin >> usuario; // Pide usuario (USER)
 
-        cout << "ContraseÃ±a: ";
+        cout << "Contraseña: ";
         char caracter; // Pide clave (CLAVE)
         caracter = _getch();
 
@@ -632,6 +691,21 @@ void encontrarVacantes(void)
         }
     }
 }
+void validarCadena(char numero[50]){
+	int i=0,sw=0,j;
+	
+	j=strlen(numero);
+	
+	while(i<j && sw == 0){
+		if(isalpha (numero[i]) != 0){
+			i++;
+		}else{
+			sw = 1;
+		}
+	}
+	
+}
+
 // FIN DE LAS FUNCIONES
 
 
