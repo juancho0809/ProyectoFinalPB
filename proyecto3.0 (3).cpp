@@ -32,7 +32,7 @@ typedef struct
     int edad;
     char educacion[20];
     char areadetrabajo[20];
-    char experiencia[150]; // aqui que ponga la descripci�n
+    char experiencia[150];
 
 } demandante;
 
@@ -105,11 +105,11 @@ void menu(void)
     {
     case 1:
         system("cls");
-        registro(); // LLama a la funcion registro donde se despliegan las opciones de registro como demandante o empleador
+        registro(); // LLama a la funci�n registro donde se despliegan las opciones de registro como demandante o empleador
         break;
     case 2:
         system("cls");
-        login(); // llama a la funcion login que tiene las opciones de acceder como demandante o empleador
+        login(); // llama a la funci�n login que tiene las opciones de acceder como demandante o empleador
         break;
     case 3:
         cout << "Gracias por usar nuestro servicio" << endl;
@@ -173,9 +173,9 @@ void registrarPerfilDemandante(void)
         cout << "Escriba su edad: ";
         cin >> datos.edad;
         cin.ignore();
-        cout << "Escriba su nivel de educación: ";
+        cout << "Escriba su nivel de educaci�n: ";
         cin.getline(datos.educacion, 20);
-        cout << "¿En cu�l �rea de trabajo se desempeña? ";
+        cout << "�En cu�l �rea de trabajo se desempe�a? ";
         cin.getline(datos.areadetrabajo, 20);
         fflush(stdin);
         cout << "Describase en 20 palabras: ";
@@ -223,7 +223,7 @@ void registrarPerfilEmpleador()
             cout << "Digite un valor positivo\nCuantos empleados tiene actualmente la empresa : ";
             cin >> datos.cantidadEmpleados;
         }
-        cout << "Escriba la dirección donde se ubica:";
+        cout << "Escriba la direcci�n donde se ubica:";
         cin.getline(datos.localizacion, 20);
 
         fichUsuariosEmpleadores.write((char *)&datos, sizeof(empleador)); // Almacenamos el usuario y su contraseña
@@ -304,7 +304,7 @@ void loginDemandantes(void)
         else
         {
             cout << "\nDatos incorrectos" << endl;                                    // si el condicional NO es valido
-            cout << "¿Desea volver a intentarlo? (1 si, otro número volver a intentar)" << endl; // retorno
+            cout << "�Desea volver a intentarlo? (1 si, otro número volver a intentar)" << endl; // retorno
             cin >> k;
             if (k != 1)
             {
@@ -333,7 +333,7 @@ void loginEmpleadores(void)
         cout << "Usuario: ";
         cin >> usuario; // Pide usuario (USER)
 
-        cout << "Contraseña: ";
+        cout << "Contrase�a: ";
         char caracter; // Pide clave (CLAVE)
         caracter = _getch();
 
@@ -358,7 +358,7 @@ void loginEmpleadores(void)
         else
         {
             cout << "\nDatos incorrectos" << endl;                                    // si el condicional NO es valido
-            cout << "¿Desea volver a intentarlo? (1 si, otro número volver a intentar)" << endl; // retorno
+            cout << "�Desea volver a intentarlo? (1 si, otro número volver a intentar)" << endl; // retorno
             cin >> k;
             if (k != 1)
             {
@@ -399,7 +399,7 @@ void crearEmpleo(void)
         cin.getline(vacante.ubicacionPuesto, 30);
         cout<<  "Correo de contacto: ";
         cin.getline(vacante.correoContacto,30);
-        cout << "Descripcion del empleo (Maximo 160 caracteres)):" << endl;
+        cout << "Descripci�n del empleo (Maximo 160 caracteres)):" << endl;
         cin.getline(vacante.descripcionEmpleo, 160);
         vacanteEmpleo.write((char *)&vacante, sizeof(empleo)); // Almacena los datos
     }
@@ -461,7 +461,7 @@ void menuEmpleadores(void)
     do
     {
         system("cls");
-        cout << "\tBienvenido actualemente su cuenta es de tipo empleador, tenga en cuenta la siguiente información:\n\n1) Añadir vacante de empleo\n2) Borrar vacantes\n3) Ver vacantes\n4) Volver al menu de acceso"<<endl;
+        cout << "\tBienvenido actualemente su cuenta es de tipo empleador, tenga en cuenta la siguiente informaci�n:\n\n1) A�adir vacante de empleo\n2) Borrar vacantes\n3) Ver vacantes\n4) Volver al menu de acceso"<<endl;
         cout << "\nEsperando opcion: ";
         cin >> opcion;
         while (opcion < 1 || opcion > 6)
@@ -504,8 +504,8 @@ void menuDemandante(void)
     do
     {
         system("cls");
-        cout << "\tBienvenido actualemente su cuenta es de tipo demandante de empleo, tenga en cuenta la siguiente información\n\n1) Ver vacantes\n2) Buscar vacantes\n3) Volver al menu de acceso"<<endl;
-        cout << "\nEsperando opcion: ";
+        cout << "\tBienvenido actualemente su cuenta es de tipo demandante de empleo, tenga en cuenta la siguiente informaci�n\n\n1) Ver vacantes\n2) Buscar vacantes\n3) Volver al menu de acceso"<<endl;
+        cout << "\nEsperando opci�n: ";
         cin >> opcion;
         while (opcion < 1 || opcion > 3)
         { // Validador de opciones
@@ -634,12 +634,4 @@ void encontrarVacantes(void)
 }
 // FIN DE LAS FUNCIONES
 
-// Ejecutar programa: Ctrl + F5 o menÃƒÆ’Ã‚Âº Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menÃƒÆ’Ã‚Âº Depurar > Iniciar depuracón
 
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de cÃƒÆ’Ã‚Â³digo fuente
-//   3. Use la ventana de salida para ver la salida de compilacón y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de cÃƒÆ’Ã‚Â³digo, o a Proyecto > Agregar elemento existente para agregar archivos de cÃƒÆ’Ã‚Â³digo existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
