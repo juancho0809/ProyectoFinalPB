@@ -3,7 +3,7 @@
  Juan Diego Lozada Gonzalez
  Alejandro Mora
  Nicolas Romero
- Fecha: 14/12/2022
+ Tiempo de Elaboracion: 14/12/2022 - 16/12/2022
  EMPAREJAMIENTO DE RECURSOS HUMANOS
  */
 #include <cstdlib>
@@ -107,11 +107,11 @@ void menu(void)
     {
     case 1:
         system("cls");
-        registro(); // LLama a la función registro donde se despliegan las opciones de registro como demandante o empleador
+        registro(); // LLama a la funciÃ³n registro donde se despliegan las opciones de registro como demandante o empleador
         break;
     case 2:
         system("cls");
-        login(); // llama a la función login que tiene las opciones de acceder como demandante o empleador
+        login(); // llama a la funciÃ³n login que tiene las opciones de acceder como demandante o empleador
         break;
     case 3:
         cout << "Gracias por usar nuestro servicio" << endl;
@@ -125,7 +125,7 @@ void registro(void)
 {
     int tipo;
     system("cls");
-    cout << "¿Como desea registrarse?: \n1) Demandante\n2) Empleador\n3) Volver" << endl;
+    cout << "Â¿Como desea registrarse?: \n1) Demandante\n2) Empleador\n3) Volver" << endl;
     cin >> tipo;
     cin.ignore();
     while (tipo < 1 || tipo > 3) // Se valida la opcion
@@ -202,7 +202,7 @@ void registrarPerfilDemandante(void)
         		cin >> datos.edad;
         	}
         	if(datos.edad < 1){
-        		cout << "Número no valido"<<endl;
+        		cout << "NÃºmero no valido"<<endl;
         		cout << "Escriba una edad correspondiente";
         		cin >> datos.edad;   		
 			}
@@ -213,26 +213,21 @@ void registrarPerfilDemandante(void)
 			}
 		}
         cin.ignore();
-        cout << "Escriba su nivel de educación: ";
+        cout << "Escriba su nivel de educaciÃ³n: ";
         cin.getline(datos.educacion, 20);
-        cout << "¿En cuál área de trabajo se desempeña? (solo letras)";
+        cout << "Â¿En cuÃ¡l Ã¡rea de trabajo se desempeÃ±a? (solo letras)";
         cin.getline(datos.areadetrabajo, 20);
         validarCadena(datos.areadetrabajo);
         if (sw == 1){
 		cout << "Digite solo letras!!!"<<endl;
-		cout << "¿En cuál área de trabajo se desempeña? ";
+		cout << "Â¿En cuÃ¡l Ã¡rea de trabajo se desempeÃ±a? ";
 		cin.getline(datos.areadetrabajo, 20);
 		}
         fflush(stdin);
         cout << "Describase en 20 palabras: ";
         cin.getline(datos.experiencia, 150);
-        validarCadena(datos.experiencia);
-        if (sw == 1){
-		cout << "Digite solo letras!!!"<<endl;
-		cout << "¿En cuál área de trabajo se desempeña? ";
-		cin.getline(datos.experiencia, 20);
-		}
-        fichUsuariosDemandantes.write((char *)&datos, sizeof(demandante)); // Almacenamos el usuario y su contraseÃ±a
+        
+        fichUsuariosDemandantes.write((char *)&datos, sizeof(demandante)); // Almacenamos el usuario y su contraseÃƒÂ±a
         fichUsuariosDemandantes.close();
     }
     cout << "\t\nEl usuario se ha registrado existosamente\nSera redirigido al menu principal, para continuar presione enter:" << endl;
@@ -261,18 +256,24 @@ void registrarPerfilEmpleador()
         cout << "\tBienvenido al sistema de registro de empleadores." << endl;
         cout << "\tA continuacion rellene los siguientes campos." << endl;
         cout << "----------------------------------------------------------------" << endl;
-        cout << "Nombre de Nombre de la empresa: ";
+        cout << "Nombre de la empresa: ";
         cin.getline(datos.nombreEmpresa, 20);
         validarCadena(datos.nombreEmpresa);
         if (sw == 1){
 		cout << "Digite solo letras!!!"<<endl;
-		cout << "¿En cuál área de trabajo se desempeña? ";
+		cout << "Nombre de la empresa: ";
 		cin.getline(datos.nombreEmpresa, 20);
 		}
         cin.ignore();
-        cout << "Escriba el sector: ";
+        cout << "Escriba el sector economico de la posiciÃ³n requerida: ";
         cin.getline(datos.sector, 20);
-        cout << "Donde se ubica la empresa: ";
+        validarCadena(datos.sector);
+        if (sw == 1){
+		cout << "Digite solo letras!!!"<<endl;
+		cout << "Escriba el sector economico de la posiciÃ³n requerida: ";
+		cin.getline(datos.sector, 20);
+		}
+        cout << "En que sector se ubica la empresa: ";
         cin.getline(datos.ubicacion, 20);
         cout << "Cantidad de empleados actualmente en la empresa : ";
         cin >> datos.cantidadEmpleados;
@@ -282,10 +283,10 @@ void registrarPerfilEmpleador()
             cout << "Digite un valor positivo\nCuantos empleados tiene actualmente la empresa : ";
             cin >> datos.cantidadEmpleados;
         }
-        cout << "Escriba la dirección donde se ubica:";
+        cout << "Escriba la direcciÃ³n donde se ubica:";
         cin.getline(datos.localizacion, 20);
 
-        fichUsuariosEmpleadores.write((char *)&datos, sizeof(empleador)); // Almacenamos el usuario y su contraseÃ±a
+        fichUsuariosEmpleadores.write((char *)&datos, sizeof(empleador)); // Almacenamos el usuario y su contraseÃƒÂ±a
         fichUsuariosEmpleadores.close();
     }
     cout << "\t\nEl usuario se ha registrado existosamente\nSera redirigido al menu principal, para continuar presione enter:" << endl;
@@ -338,7 +339,7 @@ void loginDemandantes(void)
         cout << "Usuario: ";
         cin >> usuario; // Pide usuario (USER)
 
-        cout << "Contraseña: ";
+        cout << "ContraseÃ±a: ";
         char caracter; // Pide clave (CLAVE)
         caracter = _getch();
 
@@ -363,7 +364,7 @@ void loginDemandantes(void)
         else
         {
             cout << "\nDatos incorrectos" << endl;                                    // si el condicional NO es valido
-            cout << "¿Desea volver a intentarlo? (1 si, otro nÃºmero volver a intentar)" << endl; // retorno
+            cout << "Â¿Desea volver a intentarlo? (1 si, otro nÃºmero volver a intentar)" << endl; // retorno
             cin >> k;
             if (k != 1)
             {
@@ -392,7 +393,7 @@ void loginEmpleadores(void)
         cout << "Usuario: ";
         cin >> usuario; // Pide usuario (USER)
 
-        cout << "Contraseña: ";
+        cout << "ContraseÃ±a: ";
         char caracter; // Pide clave (CLAVE)
         caracter = _getch();
 
@@ -417,7 +418,7 @@ void loginEmpleadores(void)
         else
         {
             cout << "\nDatos incorrectos" << endl;                                    // si el condicional NO es valido
-            cout << "¿Desea volver a intentarlo? (1 si, otro nÃºmero volver a intentar)" << endl; // retorno
+            cout << "Â¿Desea volver a intentarlo? (1 si, otro nÃºmero volver a intentar)" << endl; // retorno
             cin >> k;
             if (k != 1)
             {
@@ -433,7 +434,8 @@ void loginEmpleadores(void)
 
 void crearEmpleo(void)
 {
-    ofstream vacanteEmpleo; // creación del fichero para guardar las vacantes
+	int sw;
+    ofstream vacanteEmpleo; // creaciÃ³n del fichero para guardar las vacantes
     empleo vacante;
     vacanteEmpleo.open("vacantes.dat", ios::app | ios::binary); // Abre el fichero donde se guardan las vacantes
     if (vacanteEmpleo.fail())
@@ -452,13 +454,20 @@ void crearEmpleo(void)
         cout << "----------------------------------------------------------------" << endl;
         cout << "Nombre del puesto: ";
         cin.getline(vacante.puesto, 30);
+        validarCadena(vacante.puesto);
+        if (sw == 1){
+		cout << "Digite solo letras!!!"<<endl;
+		cout << "Escriba del puesto: ";
+		cin.getline(vacante.puesto, 20);
+		}
+        
         cout << "Nombre de la empresa: ";
         cin.getline(vacante.empresa, 30);
         cout << "Ubicacion de la empresa: ";
         cin.getline(vacante.ubicacionPuesto, 30);
         cout<<  "Correo de contacto: ";
         cin.getline(vacante.correoContacto,30);
-        cout << "Descripción del empleo (Maximo 160 caracteres)):" << endl;
+        cout << "DescripciÃ³n del empleo (Maximo 160 caracteres)):" << endl;
         cin.getline(vacante.descripcionEmpleo, 160);
         vacanteEmpleo.write((char *)&vacante, sizeof(empleo)); // Almacena los datos
     }
@@ -520,7 +529,7 @@ void menuEmpleadores(void)
     do
     {
         system("cls");
-        cout << "\tBienvenido actualemente su cuenta es de tipo empleador, tenga en cuenta la siguiente información:\n\n1) Añadir vacante de empleo\n2) Borrar vacantes\n3) Ver vacantes\n4) Volver al menu de acceso"<<endl;
+        cout << "\tBienvenido actualemente su cuenta es de tipo empleador, tenga en cuenta la siguiente informaciÃ³n:\n\n1) AÃ±adir vacante de empleo\n2) Borrar vacantes\n3) Ver vacantes\n4) Volver al menu de acceso"<<endl;
         cout << "\nEsperando opcion: ";
         cin >> opcion;
         while (opcion < 1 || opcion > 6)
@@ -563,8 +572,8 @@ void menuDemandante(void)
     do
     {
         system("cls");
-        cout << "\tBienvenido actualemente su cuenta es de tipo demandante de empleo, tenga en cuenta la siguiente información\n\n1) Ver vacantes\n2) Buscar vacantes\n3) Volver al menu de acceso"<<endl;
-        cout << "\nEsperando opción: ";
+        cout << "\tBienvenido actualemente su cuenta es de tipo demandante de empleo, tenga en cuenta la siguiente informaciÃ³n\n\n1) Ver vacantes\n2) Buscar vacantes\n3) Volver al menu de acceso"<<endl;
+        cout << "\nEsperando opciÃ³n: ";
         cin >> opcion;
         while (opcion < 1 || opcion > 3)
         { // Validador de opciones
@@ -694,9 +703,9 @@ void encontrarVacantes(void)
 void validarCadena(char numero[50]){
 	int i=0,sw=0,j;
 	
-	j=strlen(numero);
+	j=strlen(numero); // separa la letra en numeros
 	
-	while(i<j && sw == 0){
+	while(i<j && sw == 0){ //si presenta no presenta numeros j 
 		if(isalpha (numero[i]) != 0){
 			i++;
 		}else{
@@ -707,5 +716,4 @@ void validarCadena(char numero[50]){
 }
 
 // FIN DE LAS FUNCIONES
-
 
