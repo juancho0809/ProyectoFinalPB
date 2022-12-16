@@ -32,7 +32,7 @@ typedef struct
     int edad;
     char educacion[20];
     char areadetrabajo[20];
-    char experiencia[150]; // aqui que ponga la descripción
+    char experiencia[150]; // aqui que ponga la descripci�n
 
 } demandante;
 
@@ -45,7 +45,7 @@ typedef struct
     char ubicacion[20];
     int cantidadEmpleados;
     char localizacion[20];
-    // las vacantes para el perfil se meterÃƒÆ’Ã‚Â­an aparte siono  ci
+  
 } empleador;
 
 typedef struct
@@ -74,10 +74,11 @@ void encontrarVacantes(void);
 // funciones para login
 void loginDemandantes(void);
 void loginEmpleadores(void);
-// W3schools https://www.w3schools.com/cpp/cpp_files.asp uso de la libreria fstream
+
 
 int main()
-{
+{	
+	setlocale(LC_ALL, "spanish");
     // Esta orden permite los caracteres especiales
     cout << "\t\t***BIENVENIDO***\nEste programa hace el emparejamiento de Recursos Humanos" << endl;
     _getch();
@@ -122,7 +123,7 @@ void registro(void)
 {
     int tipo;
     system("cls");
-    cout << "¿Como desea registrarse?: \n1) Demandante\n2) Empleador\n3) Volver" << endl;
+    cout << "�Como desea registrarse?: \n1) Demandante\n2) Empleador\n3) Volver" << endl;
     cin >> tipo;
     cin.ignore();
     while (tipo < 1 || tipo > 3) // Se valida la opcion
@@ -174,7 +175,7 @@ void registrarPerfilDemandante(void)
         cin.ignore();
         cout << "Escriba su nivel de educación: ";
         cin.getline(datos.educacion, 20);
-        cout << "¿En cuál área de trabajo se desempeña? ";
+        cout << "¿En cu�l �rea de trabajo se desempeña? ";
         cin.getline(datos.areadetrabajo, 20);
         fflush(stdin);
         cout << "Describase en 20 palabras: ";
